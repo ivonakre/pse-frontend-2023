@@ -8,7 +8,7 @@
 
     <v-text-field v-model="forma.satnica" placeholder="Satnica"></v-text-field>
     <v-autocomplete :items="ucionica" item-text="naziv" item-value="id" v-model="forma.ucionica_id" placeholder="Ucionica"></v-autocomplete>
-    <v-autocomplete :items="predmeti" item-text="opis" item-value="id" v-model="forma.predmet_id" placeholder="Predmeti"></v-autocomplete>
+    <v-autocomplete :items="predmeti" item-text="naziv" item-value="id" v-model="forma.predmet_id" placeholder="Predmeti"></v-autocomplete>
     <v-btn @click="dodajTerminiPredavanja">Dodaj termine predavanja</v-btn>
 
     <v-snackbar
@@ -36,7 +36,7 @@ export default {
       stupci: [
         {text: 'Satnica', value: 'satnica'},
         {text: 'Ucionica', value: 'ucionica.naziv'},
-        {text: 'Predmeti', value: 'predmeti.opis'},
+        {text: 'Predmeti', value: 'predmeti.naziv'},
         {text: 'Akcije', value: 'akcije'}
       ],
       snackbar: {
