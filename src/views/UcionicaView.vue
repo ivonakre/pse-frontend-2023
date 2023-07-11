@@ -3,6 +3,7 @@
     <v-data-table :headers="stupci" :items="ucionica" :loading="ucitavam">
       <template v-slot:[`item.akcije`]="{ item }">
         <v-btn small color="red" class="white--text" @click="izbrisiUcionica(item.id)">Izbriši</v-btn>
+        <v-btn small color="blue" class="white--text" @click="urediUcionica(item.id)">Uredi</v-btn>
       </template>
     </v-data-table>
 
@@ -80,6 +81,20 @@ export default {
       }).catch(() => {
         this.snackbar.color = 'red';
         this.snackbar.text = 'Greška pri brisanju ucionice.';
+      }).finally(() => {
+        this.snackbar.model = true;
+        this.ucitavam = false;
+      })
+    },
+    urediUcionica: function (id) {
+      this.axios.post('http://localhost:8000/api/ucionica/uredi/' + id).then(() => {
+        this.urediUcionica();
+
+        this.snackbar.color = 'green';
+        this.snackbar.text = 'Uspješno uređena ucionica.';
+      }).catch(() => {
+        this.snackbar.color = 'red';
+        this.snackbar.text = 'Greška pri uređivanju ucionice.';
       }).finally(() => {
         this.snackbar.model = true;
         this.ucitavam = false;
